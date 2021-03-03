@@ -1,3 +1,3 @@
-module github.com/einstein8612/ChromeProfileList
+module github.com/einstein8612/chromeprofilelist
 
 go 1.15
