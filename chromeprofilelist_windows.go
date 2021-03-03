@@ -22,6 +22,7 @@ func getAllProfiles() (profiles []ChromeProfile, err error) {
 				if debug {
 					fmt.Printf("error reading profiles, err: %v", err)
 				}
+				wg.Done()
 				return
 			}
 			profiles = append(profiles, readProfiles...)
