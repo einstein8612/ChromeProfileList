@@ -8,11 +8,13 @@ import (
 	"sync"
 )
 
+// LocalAppDataPath is the directory in Windows that's declared in the environment variables and contains the appdata and
 var LocalAppDataPath string
+
+// HomeDirectory is the directory that points towards the users current home directory on Darwin and Linux
 var HomeDirectory string
 
 var debug bool = false
-var allLocations map[string][]string
 
 type ChromeProfile struct {
 	DisplayName          string
@@ -39,18 +41,22 @@ func init() {
 	HomeDirectory = home
 }
 
+// EnableDebug enables debugging as the name suggests
 func EnableDebug() {
 	debug = true
 }
 
+// DisableDebug disables debugging as the name suggests
 func DisableDebug() {
 	debug = false
 }
 
+// GetAllProfiles gets all profiles from the default Chrome userdata folders
 func GetAllProfiles() (profiles []ChromeProfile, err error) {
 	return getAllProfiles()
 }
 
+// GetProfileFromUserdata checks a folder for any potential Chrome profile folders
 func GetProfileFromUserdata(location string) (profiles []ChromeProfile, err error) {
 	files, err := ioutil.ReadDir(location)
 	if err != nil {
